@@ -39,5 +39,5 @@ Education
 
 CV
 ======
-You can find my full CV at [there](./).
+You can find my full CV at [there](../assets/CV.pdf).
 
