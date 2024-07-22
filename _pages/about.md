@@ -9,33 +9,32 @@ redirect_from:
 
 My name is Lixin Xiu. I'm currently a second-year master candidate at the Department of Mathematical Informatics, the University of Tokyo, and expected to graduate at September 2024. I'm actively finding a Ph.D. position so if you are interested in me, feel free to contact me!
 
-My research topics lie at text retrieval, semantic representation, and retrieval-augmented generation (RAG). I previously focus on using information-theoretic methods to analyze generative document retrieval quantitively, while my next direction could be related to text mining and retrieval-augmented generation.
+My research topics lie at retrieval techniques (mainly in text-level), semantic representation, and retrieval-augmented generation (RAG). I previously focused on using information-theoretic methods to analyze generative document retrieval quantitively, while my next direction could be related to multimodal applications and retrieval-augmented generation.
 
 Research Interests
 ======
-* Text Retrieval
-* Text Mining
+* Retrieval Techniques
 * Retrieval-Augmented Generation
 * Large Language Models
+* Multimodality
 * Data Mining
 * Clustering
 
-Getting started
+Publications
 ======
-1. Register a GitHub account if you don't have one and confirm your e-mail (required!)
-1. Fork [this repository](https://github.com/academicpages/academicpages.github.io) by clicking the "fork" button in the top right. 
-1. Go to the repository's settings (rightmost item in the tabs that start with "Code", should be below "Unwatch"). Rename the repository "[your GitHub username].github.io", which will also be your website's URL.
-1. Set site-wide configuration and create content & metadata (see below -- also see [this set of diffs](http://archive.is/3TPas) showing what files were changed to set up [an example site](https://getorg-testacct.github.io) for a user with the username "getorg-testacct")
-1. Upload any files (like PDFs, .zip files, etc.) to the files/ directory. They will appear at https://[your GitHub username].github.io/files/example.pdf.  
-1. Check status by going to the repository settings, in the "GitHub pages" section
+Xin Du<sup>*</sup>, <u>Lixin Xiu<sup>*</sup></u>, Kumiko Tanaka-Ishii,
+[Bottleneck-Minimal Indexing for Generative Document Retrieval](https://arxiv.org/pdf/2405.10974),
+In ICML 2024 (Oral), to appear.
 
-Site-wide configuration
-------
-The main configuration file for the site is in the base directory in [_config.yml](https://github.com/academicpages/academicpages.github.io/blob/master/_config.yml), which defines the content in the sidebars and other site-wide features. You will need to replace the default variables with ones about yourself and your site's github repository. The configuration file for the top menu is in [_data/navigation.yml](https://github.com/academicpages/academicpages.github.io/blob/master/_data/navigation.yml). For example, if you don't have a portfolio or blog posts, you can remove those items from that navigation.yml file to remove them from the header. 
 
-Create content & metadata
+
+Education
 ------
-For site content, there is one markdown file for each type of content, which are stored in directories like _publications, _talks, _posts, _teaching, or _pages. For example, each talk is a markdown file in the [_talks directory](https://github.com/academicpages/academicpages.github.io/tree/master/_talks). At the top of each markdown file is structured data in YAML about the talk, which the theme will parse to do lots of cool stuff. The same structured data about a talk is used to generate the list of talks on the [Talks page](https://academicpages.github.io/talks), each [individual page](https://academicpages.github.io/talks/2012-03-01-talk-1) for specific talks, the talks section for the [CV page](https://academicpages.github.io/cv), and the [map of places you've given a talk](https://academicpages.github.io/talkmap.html) (if you run this [python file](https://github.com/academicpages/academicpages.github.io/blob/master/talkmap.py) or [Jupyter notebook](https://github.com/academicpages/academicpages.github.io/blob/master/talkmap.ipynb), which creates the HTML for the map based on the contents of the _talks directory).
+1. , The University of Tokyo, 2022.10~2024.9(Expected),
+   Master Candidate in the Department of Mathematical Informatics.
+   
+2. Xi'an Jiaotong University, 2018.8~2022.7,
+   B.E. in Computer Science and Technology.
 
 **Markdown generator**
 
@@ -49,6 +48,3 @@ Many people use a git client to create files on their local computer and then pu
 Example: editing a markdown file for a talk
 ![Editing a markdown file for a talk](/images/editing-talk.png)
 
-For more info
-------
-More info about configuring Academic Pages can be found in [the guide](https://academicpages.github.io/markdown/). The [guides for the Minimal Mistakes theme](https://mmistakes.github.io/minimal-mistakes/docs/configuration/) (which this theme was forked from) might also be helpful.
