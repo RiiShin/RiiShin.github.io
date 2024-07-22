@@ -22,7 +22,7 @@ Research Interests
 
 Publications
 ======
-__Xin Du<sup>*</sup>, <u>Lixin Xiu<sup>*</sup></u>, Kumiko Tanaka-Ishii,__ 
+__Xin Du<sup>*</sup>, <u>Lixin Xiu<sup>*</sup></u>, Kumiko Tanaka-Ishii,__  
 [Bottleneck-Minimal Indexing for Generative Document Retrieval](https://arxiv.org/pdf/2405.10974),  
 In ICML 2024 (Oral), to appear.  
 __<sup>*</sup>__: Equal Contribution.
