@@ -7,7 +7,7 @@ redirect_from:
   - /about.html
 ---
 
-My name is Lixin Xiu. I'm currently a first-year doctoral student at Graduate School of Information Science and Technology, the University of Tokyo, and expected to graduate at September 2027. **I'm actively finding some research-related intership positions** so if you are interested in me, feel free to contact me!
+My name is Lixin Xiu. I'm currently a first-year doctoral student at Graduate School of Information Science and Technology, the University of Tokyo, and supervised by Prof. Hideki Nakayama. **I'm actively finding some research-related intership positions** so if you are interested in me, feel free to contact me!
 
 My research topics lie at retrieval techniques (mainly in text-level), semantic representation, and retrieval-augmented generation (RAG). I previously focused on using information-theoretic methods to analyze generative document retrieval quantitively, while my next direction could be related to multimodal applications and retrieval-augmented generation.
 
