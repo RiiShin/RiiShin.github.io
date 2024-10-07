@@ -34,7 +34,7 @@ Education
 1. The University of Tokyo, 2024.10~2027.9 (Expected),  
    Doctoral Student at Graduate School of Information Science and Technology.
    
-2. The University of Tokyo, 2022.10~2024.9 (Expected),  
+2. The University of Tokyo, 2022.10~2024.9,  
    Master of Information Science and Technology.
    
 3. Xi'an Jiaotong University, 2018.8~2022.7,  
