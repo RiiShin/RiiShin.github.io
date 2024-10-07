@@ -7,7 +7,7 @@ redirect_from:
   - /about.html
 ---
 
-My name is Lixin Xiu. I'm currently a second-year master candidate at the Department of Mathematical Informatics, the University of Tokyo, and expected to graduate at September 2024. **I'm actively finding a Ph.D. position** so if you are interested in me, feel free to contact me!
+My name is Lixin Xiu. I'm currently a first-year doctoral student at Graduate School of Information Science and Technology, the University of Tokyo, and expected to graduate at September 2027. **I'm actively finding some research-related intership positions** so if you are interested in me, feel free to contact me!
 
 My research topics lie at retrieval techniques (mainly in text-level), semantic representation, and retrieval-augmented generation (RAG). I previously focused on using information-theoretic methods to analyze generative document retrieval quantitively, while my next direction could be related to multimodal applications and retrieval-augmented generation.
 
@@ -31,10 +31,13 @@ __<sup>*</sup>__: Equal Contribution.
 
 Education
 ======
-1. The University of Tokyo, 2022.10~2024.9 (Expected),  
-   Master Candidate in the Department of Mathematical Informatics.
+1. The University of Tokyo, 2024.10~2027.9 (Expected),  
+   Doctoral Student at Graduate School of Information Science and Technology.
    
-2. Xi'an Jiaotong University, 2018.8~2022.7,  
+2. The University of Tokyo, 2022.10~2024.9 (Expected),  
+   Master of Information Science and Technology.
+   
+3. Xi'an Jiaotong University, 2018.8~2022.7,  
    B.E. in Computer Science and Technology.
 
 CV
