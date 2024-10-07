@@ -42,5 +42,5 @@ Education
 
 CV
 ======
-You can find my full CV at [there](../assets/CV_Oct_2024.pdf).
+You can find my full CV at [there](../assets/CV102024.pdf).
 
