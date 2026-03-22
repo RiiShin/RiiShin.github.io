@@ -8,7 +8,7 @@
 
 # Basic Site Settings
 locale                   : "en-US"
-title                    : "Homepage"
+title                    : "About"
 title_separator          : "-"
 name                     : &name "Lixin Xiu"
 description              : &description "personal description"
@@ -21,7 +21,7 @@ repository               : "academicpages/academicpages.github.io"
 #               Additional customization can be done by editing /_includes/author-profile.html
 author:
   # Biographic information
-  avatar           : "../assets/xiu.png"
+  avatar           : "../assets/Web.JPG"
   name             : "Lixin Xiu"
   pronouns         : # example: "she/her"  
   bio              : "Doctoral Student at UTokyo"
@@ -32,7 +32,7 @@ author:
 
   # # Academic websites
   # arxiv            : # URL - Update with the correct link to your profile
-  # googlescholar    : "https://scholar.google.com/citations?user=PS_CX0AAAAAJ"
+  googlescholar    : "https://scholar.google.com/citations?user=31WMq8IAAAAJ&hl=en&oi=ao"
   # impactstory      : # URL
   # orcid            : "http://orcid.org/yourorcidurl"
   # semantic         : # URL
