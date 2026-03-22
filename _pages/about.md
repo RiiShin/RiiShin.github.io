@@ -57,4 +57,4 @@ Xin Du<sup>\*</sup>, **<u>Lixin Xiu</u>**<sup>\*</sup>, and Kumiko Tanaka-Ishii.
 
 ## Misc
 
-You can find my full CV [here](../assets/CV102024.pdf).
+You can find my full CV [here](../assets/CV_Mar2026.pdf).
