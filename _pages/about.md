@@ -13,33 +13,33 @@ My research interests include Multimodal Large Language Models (MLLMs), post-tra
 
 **Education:**
 - **The University of Tokyo**, Tokyo, Japan (Oct 2024 — Sep 2027, Expected)
-  PhD in Information Science and Technology. Supervisor: Prof. Hideki Nakayama
+  <br>PhD in Information Science and Technology. Supervisor: Prof. Hideki Nakayama
 - **The University of Tokyo**, Tokyo, Japan (Oct 2022 — Sep 2024)
-  Master of Information Science and Technology, Department of Mathematical Informatics
+  <br>Master of Information Science and Technology, Department of Mathematical Informatics
 - **Xi'an Jiaotong University**, Xi'an, China (Aug 2018 — Jul 2022)
-  B.E. in Computer Science and Technology
+  <br>B.E. in Computer Science and Technology
 
 ## Publications
 
-**Lixin Xiu**, Xufang Luo, and Hideki Nakayama. A Comprehensive Information-Decomposition Analysis of Large Vision-Language Models. In *Proceedings of the 14th International Conference on Learning Representations* (**ICLR 2026**).
+**Lixin Xiu**, Xufang Luo, and Hideki Nakayama. [A Comprehensive Information-Decomposition Analysis of Large Vision-Language Models](https://openreview.net/forum?id=6WsBGk4Iag). In *Proceedings of the 14th International Conference on Learning Representations* (**ICLR 2026**).
 
-Xin Du<sup>\*</sup>, **<u>Lixin Xiu</u>**<sup>\*</sup>, and Kumiko Tanaka-Ishii. [Bottleneck-Minimal Indexing for Generative Document Retrieval](https://arxiv.org/pdf/2405.10974). In *Proceedings of the 41st International Conference on Machine Learning*, PMLR 235:11888-11904, 2024. Selected as oral presentations (**ICML 2024 Oral**).
-<sup>\*</sup>: Equal Contribution.
+Xin Du<sup>\*</sup>, **Lixin Xiu**<sup>\*</sup>, and Kumiko Tanaka-Ishii. [Bottleneck-Minimal Indexing for Generative Document Retrieval](https://arxiv.org/pdf/2405.10974). In *Proceedings of the 41st International Conference on Machine Learning*, PMLR 235:11888-11904, 2024. Selected as oral presentations (**ICML 2024 Oral**).
+<br><sup>\*</sup>: Equal Contribution.
 
 ## Experience
 
-**Intern** &emsp; Dec 2025 — Mar 2026
-*Shanda AI Research Tokyo*, Tokyo, Japan
+**Intern** (Dec 2025 — Mar 2026)
+<br>*Shanda AI Research Tokyo*, Tokyo, Japan
 - Built a post-training pipeline for role-play chatbots on open-source multilingual LLMs by generating, cleaning, and filtering high-quality synthetic dialogue data with frontier language model APIs.
 - Fine-tuned smaller models via supervised fine-tuning (SFT) to distill persona consistency, adversarial robustness, and controllable conversational styles into locally deployable 8B/14B LLMs.
 
-**Research Assistant** &emsp; Nov 2024 — Present
-*Beyond AI, the University of Tokyo and SoftBank*, Tokyo, Japan
+**Research Assistant** (Nov 2024 — Present)
+<br>*Beyond AI, the University of Tokyo and SoftBank*, Tokyo, Japan
 - Developed a generative retrieval-augmented generation (RAG) framework for a vanilla language model.
 - Prepared a research manuscript and am currently revising it for submission to a top-tier venue.
 
-**Traffic Sign Recognition Contest, Summer Workshop 2021** &emsp; May 2021 — Jul 2021
-*School of Computing, National University of Singapore*, Singapore
+**Traffic Sign Recognition Contest, Summer Workshop 2021** (May 2021 — Jul 2021)
+<br>*School of Computing, National University of Singapore*, Singapore
 - Developed and optimized neural networks for traffic sign recognition, and delivered project presentations.
 - Won third place and received an A grade.
 
