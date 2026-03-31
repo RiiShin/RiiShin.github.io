@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="A Comprehensive Information-Decomposition Analysis of Large Vision-Language Models - ICLR 2026">
+  <meta name="keywords" content="PID, Partial Information Decomposition, LVLM, Vision-Language Models, Interpretability, Information Theory">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>A Comprehensive Information-Decomposition Analysis of Large Vision-Language Models</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="static/css/bulma.min.css">
+  <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="static/css/index.css">
+  <link rel="stylesheet" href="static/css/custom.css">
+</head>
+<body>
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="publication-title" style="font-size: 2.5rem;">A Comprehensive Information-Decomposition Analysis of Large Vision-Language Models</h1>
+          <div class="is-size-5 publication-authors" style="margin-top: 1rem;">
+            <span class="author-block">
+              <a href="https://riishin.github.io/" target="_blank">Lixin Xiu</a><sup>1</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://scholar.google.com/citations?user=c5OaSsUAAAAJ&hl=zh-CN" target="_blank">Xufang Luo</a><sup>2*</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://www.nlab.ci.i.u-tokyo.ac.jp/~nakayama/index_en.html" target="_blank">Hideki Nakayama</a><sup>1*</sup>
+            </span>
+          </div>
+
+          <div class="is-size-6 publication-authors" style="margin-top: 0.5rem;">
+            <span class="author-block"><sup>1</sup>The University of Tokyo,</span>
+            <span class="author-block"><sup>2</sup>Microsoft Research</span>
+          </div>
+          <div class="is-size-6" style="color: #666; margin-top: 0.3rem;">
+            <span><sup>*</sup>Corresponding authors: xufluo@microsoft.com, nakayama@ci.i.u-tokyo.ac.jp</span>
+          </div>
+
+          <div style="margin-top: 1.2rem; margin-bottom: 1rem;">
+            <span style="font-size: 1.6rem; font-weight: 700;">ICLR 2026</span>
+          </div>
+
+          <div class="publication-links">
+            <span class="link-block">
+              <a href="https://openreview.net/forum?id=6WsBGk4Iag" target="_blank" class="external-link button is-normal is-rounded is-dark">
+                <span class="icon"><i class="fas fa-link"></i></span>
+                <span>OpenReview</span>
+              </a>
+            </span>
+            <span class="link-block">
+              <a href="https://github.com/RiiShin/pid-lvlm-analysis" target="_blank" class="external-link button is-normal is-rounded is-dark">
+                <span class="icon"><i class="fab fa-github"></i></span>
+                <span>Code</span>
+              </a>
+            </span>
+            <span class="link-block">
+              <a href="#" class="external-link button is-normal is-rounded is-dark" title="Coming soon" style="opacity: 0.6; pointer-events: none;">
+                <span class="icon"><i class="ai ai-arxiv"></i></span>
+                <span>arXiv (coming soon)</span>
+              </a>
+            </span>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TL;DR -->
+<section class="section" style="padding: 2rem 1.5rem; background: #f0f4ff;">
+  <div class="container is-max-desktop">
+    <div class="content has-text-centered">
+      <p style="font-size: 1.15rem; color: #333; margin: 0;">
+        <b>TL;DR:</b> LVLM predictions do not always reflect true multimodal fusion; reliance on language priors versus cross-modal synergy varies by task and model family.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- Introduction -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-four-fifths">
+        <div class="section-title-wrap"><h2 class="title is-3 section-title-bar">Introduction</h2></div>
+        <div class="content has-text-justified" style="font-size: 1.05rem;">
+          <p>
+            Large vision-language models (LVLMs) achieve remarkable success across multimodal tasks, yet their internal decision-making processes remain opaque. Accuracy alone cannot reveal whether a correct prediction arises from genuine multimodal fusion, reliance on language priors, or visual evidence in isolation. Existing interpretability efforts often adopt a "micro-scope" focus&mdash;analyzing one modality in isolation&mdash;or introduce ad hoc metrics that lack firm theoretical support. We turn to <b>partial information decomposition (PID)</b> [1], a rigorous information-theoretic framework that decomposes the mutual information between two sources and a target into four non-negative atoms: redundancy <em>R</em>, vision uniqueness <em>U<sub>1</sub></em>, language uniqueness <em>U<sub>2</sub></em>, and synergy <em>S</em>.
+          </p>
+          <p>
+            Building on the BATCH estimator [2], we develop a <b>model-agnostic pipeline</b> that estimates PID quantities for LVLMs without changing architectures or retraining. We profile <b>26 models</b> from <b>11 families</b> (0.5B&ndash;90B parameters) on <b>four benchmarks</b> spanning general reasoning, hallucination evaluation, and domain-specific knowledge. Our analysis covers three complementary dimensions: <em>breadth</em> (cross-model &amp; cross-task), <em>depth</em> (layer-wise information dynamics via logit lens), and <em>time</em> (learning dynamics across LLaVA-1.5's two-stage training).
+          </p>
+          <p>
+            Our study reveals two task regimes&mdash;<em>synergy-driven</em> vs. <em>knowledge-driven</em>&mdash;and two stable family-level strategies&mdash;<em>fusion-centric</em> vs. <em>language-centric</em>. We uncover a consistent three-phase pattern of information flow across layers and identify visual instruction tuning as the key stage where multimodal fusion is learned. Together, these findings provide a quantitative lens beyond accuracy-only evaluation, offering actionable insights for analyzing and designing the next generation of LVLMs.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PID Decomposition -->
+<section class="section hero is-light">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-full">
+        <div class="section-title-wrap"><h2 class="title is-3 section-title-bar">PID Decomposition</h2></div>
+        <div class="columns is-vcentered">
+          <div class="column is-5">
+            <figure class="image">
+              <img src="static/images/pid.png" alt="PID Venn diagram" style="max-width: 100%;">
+            </figure>
+          </div>
+          <div class="column is-7">
+            <div class="content has-text-justified">
+              <p>
+                Classical mutual information <em>I(X<sub>1</sub>, X<sub>2</sub>; Y)</em> quantifies the total information from a source, but cannot disentangle the complex interactions between multiple inputs such as vision and text. <b>Partial Information Decomposition</b> [1] decomposes this into four non-negative atoms:
+              </p>
+              <ul>
+                <li><b style="color:#808080;">Redundancy <em>R</em></b> &mdash; Information shared by both vision and language</li>
+                <li><b style="color:#e8945a;">Vision Uniqueness <em>U<sub>1</sub></em></b> &mdash; Information only the image provides</li>
+                <li><b style="color:#5b9bd5;">Language Uniqueness <em>U<sub>2</sub></em></b> &mdash; Information only the text provides</li>
+                <li><b style="color:#9b59b6;">Synergy <em>S</em></b> &mdash; Information that emerges only from combining both modalities</li>
+              </ul>
+              <p>
+                PID quantifies whether a prediction is driven by unimodal priors or true multimodal fusion, providing a principled lens for probing LVLM internals.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Framework -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="section-title-wrap"><h2 class="title is-3 section-title-bar">Framework</h2></div>
+    <div class="content has-text-centered mb-4">
+      <p style="font-size: 1.05rem;">
+        Building on the BATCH estimator [2], we develop a <b>model-agnostic framework</b> to estimate PID quantities for LVLMs without changing model architectures or retraining.
+      </p>
+    </div>
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full">
+        <figure class="image">
+          <img src="static/images/overview2corp.png" alt="Overview of the PID framework for LVLMs" style="max-width: 100%;">
+        </figure>
+        <p class="caption mt-3">
+          <b>(1)</b> Given an image-text pair, we extract image and text embeddings as two features, run a standard multimodal forward pass and collect two unimodal predictions by masking the other modality. PID values are estimated with the BATCH estimator.
+          <b>(2)</b> Three analysis dimensions: (a) cross-model and cross-task comparison across 11 families and 26 models on 4 datasets, (b) layer-wise information dynamics via logit lens, and (c) learning dynamics over two-stage training.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Findings Header -->
+<section class="section" style="padding-bottom: 0;">
+  <div class="container is-max-desktop">
+    <div class="section-title-wrap"><h2 class="title is-2 section-title-bar" style="margin-bottom: 0;">Findings</h2></div>
+  </div>
+</section>
+
+<!-- Finding: Two Task Regimes -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <h3 class="title is-3 has-text-centered">Two Task Regimes of Information Use</h3>
+    <p class="subtitle has-text-centered is-6">Correct LVLM predictions do not always arise from the same underlying information strategy.</p>
+
+    <div class="carousel-wrapper">
+      <!-- Slide 1: Finding 1 -->
+      <div class="carousel-slide active" data-carousel="regime" data-index="0">
+        <div class="box finding-box">
+          <div class="columns is-vcentered">
+            <div class="column is-6">
+              <figure class="image">
+                <img src="static/images/c1rec.png" alt="Synergy vs Language Uniqueness across datasets">
+              </figure>
+            </div>
+            <div class="column is-6">
+              <div class="content has-text-justified">
+                <p>We observe two recurring information-use regimes across our four benchmarks:</p>
+                <div class="notification is-info is-light">
+                  <p><b>Synergy-driven regime</b> (MMBench, POPE): Models rely more on strong cross-modal fusion. Accuracy correlates most strongly with synergy <em>S</em> (&rho; &asymp; 0.75, <em>p</em> &lt; 0.001).</p>
+                </div>
+                <div class="notification is-warning is-light">
+                  <p><b>Knowledge-driven regime</b> (Reefknot, PMC-VQA): Performance reflects stronger dependence on language-side knowledge <em>U<sub>2</sub></em>. Synergy helps but gains are bounded when language knowledge becomes the bottleneck.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Slide 2: Finding 2 -->
+      <div class="carousel-slide" data-carousel="regime" data-index="1">
+        <div class="box finding-box-alt">
+          <h4 class="title is-5">Information Correlates of Accuracy Across Task Regimes</h4>
+          <div class="has-text-centered mb-4">
+            <figure class="image" style="display: inline-block; max-width: 600px;">
+              <img src="static/images/c2.png" alt="Spearman correlations across datasets">
+            </figure>
+          </div>
+          <div class="content has-text-justified">
+            <p>
+              On synergy-driven benchmarks (MMBench, POPE), <em>S</em> is the strongest positive correlate of accuracy (&rho; &asymp; 0.75, <em>p</em> &lt; 0.001), whereas total mutual information <em>I(X<sub>1</sub>, X<sub>2</sub>; Y)</em> is less consistent across datasets. This implies that top-performing models are not those with simply "more" information, but those that translate overlapping cues into effective cross-modal use.
+            </p>
+            <p>
+              On knowledge-driven benchmarks (Reefknot, PMC-VQA), <em>U<sub>2</sub></em> becomes comparatively more informative, while <em>S</em> remains positively related to accuracy but is no longer dominant.
+            </p>
+          </div>
+        </div>
+      </div>
+      <!-- Navigation -->
+      <div class="carousel-nav">
+        <button class="carousel-btn carousel-prev" data-carousel="regime"><i class="fas fa-chevron-left"></i></button>
+        <span class="carousel-dots" data-carousel="regime">
+          <span class="dot active" data-index="0"></span>
+          <span class="dot" data-index="1"></span>
+        </span>
+        <button class="carousel-btn carousel-next" data-carousel="regime"><i class="fas fa-chevron-right"></i></button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Finding: Family-Level Strategies -->
+<section class="section hero is-light">
+  <div class="container is-max-desktop">
+    <h3 class="title is-3 has-text-centered">Stable Family-Level Information Strategies</h3>
+    <p class="subtitle has-text-centered is-6">Model families separate into two stable strategies, consistent across task regimes.</p>
+
+    <div class="carousel-wrapper">
+      <!-- Slide 1: Finding 3 -->
+      <div class="carousel-slide active" data-carousel="family" data-index="0">
+        <div class="box finding-box">
+          <div class="columns is-vcentered">
+            <div class="column is-7">
+              <figure class="image">
+                <img src="static/images/c3.png" alt="Family-level strategies: median S vs U2">
+              </figure>
+            </div>
+            <div class="column is-5">
+              <div class="content has-text-justified">
+                <div class="notification is-success is-light">
+                  <p><b>Fusion-centric</b> families (InternVL2.5/3, Qwen2/2.5-VL, LLaVA-OV) show relatively high synergy <em>S</em> and lower language uniqueness <em>U<sub>2</sub></em>.</p>
+                </div>
+                <div class="notification is-danger is-light">
+                  <p><b>Language-centric</b> families (Gemma3, Cambrian) rely more on language uniqueness <em>U<sub>2</sub></em> with lower synergy <em>S</em>.</p>
+                </div>
+                <p>The relative positions of families remain similar across regimes, suggesting a stable family-level tendency rather than task-specific behavior.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Slide 2: Finding 4 -->
+      <div class="carousel-slide" data-carousel="family" data-index="1">
+        <div class="box finding-box-alt">
+          <h4 class="title is-5">Scaling Effects on Synergy-Driven Tasks</h4>
+          <div class="has-text-centered mb-4">
+            <figure class="image" style="display: inline-block; max-width: 600px;">
+              <img src="static/images/c4.png" alt="Scaling on synergy-driven tasks">
+            </figure>
+          </div>
+          <div class="content has-text-justified">
+            <p>
+              Within each family, accuracy differences between available sizes co-vary more closely with changes in synergy <em>S</em> than with changes in <em>U<sub>2</sub></em>. The share of language uniqueness <em>U<sub>2</sub></em> does not systematically increase with size and often decreases.
+            </p>
+            <p>
+              Larger checkpoints that improve more in accuracy also exhibit larger increases in <em>S</em>. This confirms that on synergy-driven tasks, performance gains are more closely tied to stronger multimodal fusion than to further amplifying language-side priors.
+            </p>
+          </div>
+        </div>
+      </div>
+      <!-- Navigation -->
+      <div class="carousel-nav">
+        <button class="carousel-btn carousel-prev" data-carousel="family"><i class="fas fa-chevron-left"></i></button>
+        <span class="carousel-dots" data-carousel="family">
+          <span class="dot active" data-index="0"></span>
+          <span class="dot" data-index="1"></span>
+        </span>
+        <button class="carousel-btn carousel-next" data-carousel="family"><i class="fas fa-chevron-right"></i></button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- How Fusion Emerges -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <h3 class="title is-3 has-text-centered">How Fusion Emerges</h3>
+    <p class="subtitle has-text-centered is-6">Layer-wise dynamics and learning trajectories reveal where and when multimodal fusion arises.</p>
+
+    <!-- Layer-wise -->
+    <div class="box finding-box-fusion">
+      <h4 class="title is-4">Layer-Wise: A Three-Phase Pattern</h4>
+      <div class="content has-text-justified mb-4">
+        <p>
+          By applying the <em>logit lens</em> to project hidden states at each transformer layer, we uncover a consistent three-phase pattern:
+        </p>
+        <div class="columns is-mobile" style="margin-bottom: 0;">
+          <div class="column has-text-centered">
+            <span class="tag is-medium is-light">1. Silent Phase</span>
+            <p class="is-size-7 mt-1">Early layers: all PID &asymp; 0</p>
+          </div>
+          <div class="column has-text-centered">
+            <span class="tag is-medium is-info is-light">2. Language Build-up</span>
+            <p class="is-size-7 mt-1">Mid-to-late layers: <em>U<sub>2</sub></em> rises</p>
+          </div>
+          <div class="column has-text-centered">
+            <span class="tag is-medium is-danger is-light">3. Synergistic Fusion</span>
+            <p class="is-size-7 mt-1">Final layers: <em>S</em> peaks</p>
+          </div>
+        </div>
+      </div>
+      <figure class="image mb-4">
+        <img src="static/images/c5.png" alt="Layer-wise PID dynamics (U2 and S)" style="max-width: 100%;">
+      </figure>
+      <p class="caption">Layer-wise dynamics of <em>U<sub>2</sub></em> and <em>S</em> for representative models. Top: MMBench (synergy-driven). Bottom: PMC-VQA (knowledge-driven).</p>
+    </div>
+
+    <!-- Learning Dynamics -->
+    <div class="box finding-box-fusion mt-5">
+      <h4 class="title is-4">Training Dynamics: Visual Instruction Tuning Unlocks Fusion</h4>
+      <div class="content has-text-justified mb-4">
+        <p>
+          We trace PID through LLaVA-1.5's two-stage training. Multimodal fusion <em>S</em> is learned primarily during <b>visual instruction tuning</b> rather than alignment pretraining:
+        </p>
+        <ul>
+          <li><b>Stage 1</b> (Alignment Pretraining): Both <em>S</em> and <em>U<sub>2</sub></em> remain low and stable. Only the projector is trained.</li>
+          <li><b>Stage 2</b> (Visual Instruction Tuning): Both components increase markedly. The 7B model shows stronger gains in <em>S</em>, while the 13B model shows comparatively stronger growth in <em>U<sub>2</sub></em>.</li>
+        </ul>
+      </div>
+      <div class="has-text-centered">
+        <figure class="image" style="display: inline-block; max-width: 70%;">
+          <img src="static/images/c6.png" alt="Learning dynamics of LLaVA-1.5">
+        </figure>
+      </div>
+      <p class="caption mt-2">Evolution of <em>S</em> and <em>U<sub>2</sub></em> during two-stage training of LLaVA-1.5 (7B, 13B) on MMBench and PMC-VQA.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Conclusion, Limitations & Future Directions -->
+<section class="section hero is-light">
+  <div class="container is-max-desktop">
+    <div class="section-title-wrap"><h2 class="title is-3 section-title-bar">Conclusion &amp; Discussion</h2></div>
+    <div class="columns is-centered">
+      <div class="column is-four-fifths">
+        <div class="content has-text-justified" style="font-size: 1.05rem;">
+          <p>
+            Higher accuracy does not necessarily imply stronger multimodal fusion. PID complements accuracy-only evaluation by revealing whether success comes from true cross-modal interaction or language-side priors. We suggest using <em>S</em> and <em>U<sub>2</sub></em> as diagnostic signals for model analysis and scaling, and designing benchmarks that require high synergy rather than recoverable language priors.
+          </p>
+          <p>
+            This study has several limitations. PID estimation assumes a discrete target space, so our framework does not cover fully open-ended generation tasks. Additionally, our unimodal probes are approximate: masking a modality with calibrated noise stabilizes estimation, but <em>U<sub>1</sub></em>, <em>U<sub>2</sub></em>, and <em>S</em> are measured under this probe rather than under truly natural unimodal inputs.
+          </p>
+          <p>
+            Looking ahead, (<em>U<sub>1</sub></em>, <em>U<sub>2</sub></em>, <em>S</em>) can serve as diagnostic signals during scaling and instruction tuning, and potentially as auxiliary objectives to balance fusion and language priors. PID-based analyses can also guide the construction of benchmarks that explicitly require high synergy <em>S</em> or isolate language priors <em>U<sub>2</sub></em>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Case Studies -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="section-title-wrap"><h2 class="title is-3 section-title-bar">Qualitative Case Studies</h2></div>
+    <p class="subtitle has-text-centered is-6">Illustrating how different models process the same question</p>
+
+    <div class="columns mt-4">
+      <div class="column is-6">
+        <div class="box">
+          <figure class="image">
+            <img src="static/images/case1.png" alt="Case study: Geography question">
+          </figure>
+          <p class="caption mt-2"><b>Case 1:</b> A geography question. Models with high synergy <em>S</em> correctly integrate map visuals with language context to identify "Massachusetts."</p>
+        </div>
+      </div>
+      <div class="column is-6">
+        <div class="box">
+          <figure class="image">
+            <img src="static/images/case2.png" alt="Case study: Spatial relation question">
+          </figure>
+          <p class="caption mt-2"><b>Case 2:</b> A spatial relation question. The PID decomposition reveals how each model balances vision uniqueness, language priors, and synergistic fusion.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BibTeX -->
+<section class="section hero is-light" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <div class="section-title-wrap"><h2 class="title is-3 section-title-bar">BibTeX</h2></div>
+    <div class="bibtex-container">
+      <button class="button is-small is-rounded copy-bibtex" id="copyBibtex" title="Copy to clipboard">
+        <span class="icon is-small"><i class="fas fa-copy"></i></span>
+        <span>Copy</span>
+      </button>
+      <pre id="bibtexContent"><code>@inproceedings{xiu2026comprehensive,
+  title={A Comprehensive Information-Decomposition Analysis of Large Vision-Language Models},
+  author={Xiu, Lixin and Luo, Xufang and Nakayama, Hideki},
+  booktitle={International Conference on Learning Representations (ICLR)},
+  year={2026}
+}</code></pre>
+    </div>
+  </div>
+</section>
+
+<!-- References -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <h2 class="title is-4 has-text-centered">References</h2>
+    <div class="content" style="font-size: 0.95rem;">
+      <ol>
+        <li>Paul L. Williams and Randall D. Beer. <em>Nonnegative decomposition of multivariate information.</em> arXiv 2010.</li>
+        <li>Paul Pu Liang, Yun Cheng, Xiang Fan, Chun Kai Ling, Suzanne Nie, Richard Chen, Zihao Deng, Nicholas Allen, Randy Auerbach, Faisal Mahmood, et al. <em>Quantifying &amp; modeling multimodal interactions: An information decomposition framework.</em> NeurIPS 2023.</li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content has-text-centered">
+          <p>
+            This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a> which was adopted from the <a href="https://nerfies.github.io" target="_blank">Nerfies</a> project page. This website is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="static/js/fontawesome.all.min.js"></script>
+<script src="static/js/index.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Dynamically size title underline bars to match text width + small padding
+  document.querySelectorAll('.section-title-bar').forEach(el => {
+    const textWidth = el.scrollWidth;
+    el.style.setProperty('--bar-width', (textWidth + 24) + 'px');
+  });
+
+  // Carousel switching for findings
+  function switchCarousel(carouselName, targetIndex) {
+    const slides = document.querySelectorAll('.carousel-slide[data-carousel="' + carouselName + '"]');
+    const dots = document.querySelectorAll('.carousel-dots[data-carousel="' + carouselName + '"] .dot');
+    const total = slides.length;
+    const idx = ((targetIndex % total) + total) % total; // wrap around
+    slides.forEach(s => s.classList.remove('active'));
+    dots.forEach(d => d.classList.remove('active'));
+    slides[idx].classList.add('active');
+    dots[idx].classList.add('active');
+    // Store current index
+    slides[idx].closest('.carousel-wrapper').dataset.current = idx;
+  }
+
+  document.querySelectorAll('.carousel-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+      const name = this.dataset.carousel;
+      const wrapper = this.closest('.carousel-wrapper');
+      const current = parseInt(wrapper.dataset.current || 0);
+      const dir = this.classList.contains('carousel-next') ? 1 : -1;
+      switchCarousel(name, current + dir);
+    });
+  });
+
+  document.querySelectorAll('.carousel-dots .dot').forEach(dot => {
+    dot.addEventListener('click', function() {
+      const name = this.closest('.carousel-dots').dataset.carousel;
+      switchCarousel(name, parseInt(this.dataset.index));
+    });
+  });
+
+  const copyBtn = document.getElementById('copyBibtex');
+  if (copyBtn) {
+    copyBtn.addEventListener('click', function() {
+      const text = document.getElementById('bibtexContent').innerText;
+      navigator.clipboard.writeText(text).then(() => {
+        copyBtn.querySelector('span:last-child').textContent = 'Copied!';
+        setTimeout(() => {
+          copyBtn.querySelector('span:last-child').textContent = 'Copy';
+        }, 2000);
+      });
+    });
+  }
+});
+</script>
+
+</body>
+</html>

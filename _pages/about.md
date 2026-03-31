@@ -21,7 +21,7 @@ My research interests include Multimodal Large Language Models (MLLMs), post-tra
 
 ## Publications
 
-**Lixin Xiu**, Xufang Luo, and Hideki Nakayama. [A Comprehensive Information-Decomposition Analysis of Large Vision-Language Models](https://openreview.net/forum?id=6WsBGk4Iag). In *Proceedings of the 14th International Conference on Learning Representations* (**ICLR 2026**).
+**Lixin Xiu**, Xufang Luo, and Hideki Nakayama. [A Comprehensive Information-Decomposition Analysis of Large Vision-Language Models](https://openreview.net/forum?id=6WsBGk4Iag). In *Proceedings of the 14th International Conference on Learning Representations* (**ICLR 2026**). [[Project Page]](./pid-lvlm-iclr26/)
 
 Xin Du<sup>\*</sup>, **Lixin Xiu**<sup>\*</sup>, and Kumiko Tanaka-Ishii. [Bottleneck-Minimal Indexing for Generative Document Retrieval](https://arxiv.org/pdf/2405.10974). In *Proceedings of the 41st International Conference on Machine Learning*, PMLR 235:11888-11904, 2024. Selected as oral presentations (**ICML 2024 Oral**).
 <br><sup>\*</sup>: Equal Contribution.
