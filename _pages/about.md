@@ -30,27 +30,19 @@ Xin Du<sup>\*</sup>, **Lixin Xiu**<sup>\*</sup>, and Kumiko Tanaka-Ishii. [Bottl
 
 **Intern** (Dec 2025 — Mar 2026)
 <br>*Shanda AI Research Tokyo*, Tokyo, Japan
-- Built a post-training pipeline for role-play chatbots on open-source multilingual LLMs by generating, cleaning, and filtering high-quality synthetic dialogue data with frontier language model APIs.
-- Fine-tuned smaller models via supervised fine-tuning (SFT) to distill persona consistency, adversarial robustness, and controllable conversational styles into locally deployable 8B/14B LLMs.
 
 **Research Assistant** (Nov 2024 — Present)
 <br>*Beyond AI, the University of Tokyo and SoftBank*, Tokyo, Japan
-- Developed a generative retrieval-augmented generation (RAG) framework for a vanilla language model.
-- Prepared a research manuscript and am currently revising it for submission to a top-tier venue.
 
 **Traffic Sign Recognition Contest, Summer Workshop 2021** (May 2021 — Jul 2021)
 <br>*School of Computing, National University of Singapore*, Singapore
-- Developed and optimized neural networks for traffic sign recognition, and delivered project presentations.
-- Won third place and received an A grade.
 
 ## Honors & Service
 
 **Honors:**
 - UTokyo SPRING GX (JPY 180,000/month stipend, JPY 360,000/year research grant), Oct 2024 — Sep 2027
-- JASSO Scholarship, Oct 2022 — Mar 2023
 - Outstanding Graduate, Xi'an Jiaotong University, Jun 2022
 - Third Prize of the 12th Mathematics Competition of Chinese College Students, Dec 2020
-- Third-Class Scholarship for 2019-2020 Academic Year (University-level), Sep 2020
 
 **Service:**
 - Reviewer: ICLR 2026
