@@ -1,16 +1,14 @@
 ---
-layout: archive
-title: "Publications"
+layout: page
+title: Publications
 permalink: /publications/
-author_profile: true
+nav: true
+nav_order: 1
+nav_anchor: selected-publications
+home_anchor: selected-publications
+description: Multimodal learning, information theory, and generative retrieval.
 ---
 
-{% if site.author.googlescholar %}
-  <div class="wordwrap">You can also find my articles on <a href="{{site.author.googlescholar}}">my Google Scholar profile</a>.</div>
-{% endif %}
+For citation information, see my [Semantic Scholar profile](https://www.semanticscholar.org/author/Lixin-Xiu/2302333252).
 
-{% include base_path %}
-
-{% for post in site.publications reversed %}
-  {% include archive-single.html %}
-{% endfor %}
+{% include publication_sections.liquid %}

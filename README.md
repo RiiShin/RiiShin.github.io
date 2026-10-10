@@ -1,51 +1,42 @@
-# Academic Pages
+# Lixin Xiu — personal academic website
 
-![pages-build-deployment](https://github.com/academicpages/academicpages.github.io/actions/workflows/pages/pages-build-deployment/badge.svg)
+Based on al-folio v1.2 (upstream commit b95d6d61a1b0663529094b1b5f4fbe8aa41f8a04).
 
-Academic Pages is a Github Pages template for academic websites.
+## Local preview
 
-# Getting Started
+Use Ruby 3.3. On this Mac, prepend `/opt/homebrew/opt/ruby@3.3/bin` to `PATH`.
 
-1. Register a GitHub account if you don't have one and confirm your e-mail (required!)
-1. Click the "Use this template" button in the top right.
-1. On the "New repository" page, enter your repository name as "[your GitHub username].github.io", which will also be your website's URL.
-1. Set site-wide configuration and add your content.
-1. Upload any files (like PDFs, .zip files, etc.) to the `files/` directory. They will appear at https://[your GitHub username].github.io/files/example.pdf.
-1. Check status by going to the repository settings, in the "GitHub pages" section
-1. (Optional) Use the Jupyter notebooks or python scripts in the `markdown_generator` folder to generate markdown files for publications and talks from a TSV file.
+```sh
+bundle config set --local path vendor/bundle
+bundle install
+npm ci
+bundle exec jekyll serve --host 127.0.0.1 --port 4000
+```
 
-See more info at https://academicpages.github.io/
+Open http://127.0.0.1:4000/. The personal site uses an empty `baseurl`.
 
-## Running Locally
+## Editing content
 
-When you are initially working your website, it is very useful to be able to preview the changes locally before pushing them to GitHub. To work locally you will need to:
+- `_pages/about.md`: introduction and education.
+- `_bibliography/papers.bib`: publications, selected papers, links, and equal-contribution notes.
+- `_includes/hook/bib.liquid`: supported bibliography hook for visible co-first-author notes and inline presentation distinctions.
+- `_includes/publication_sections.liquid`: shared Selected Publications and Full Publications sections on the homepage and publication page. `selected` marks the two lead-author papers; `sort_priority` resolves same-year ordering without inventing publication dates.
+- `_includes/header.liquid`: intentional override of the al-folio header to target the selected-publications anchor and load the mobile section-navigation helper. Its upstream version is tracked in `.al-folio-overrides.yml`.
+- `_data/cv.yml`: experience, honors, service, and online CV. Experience and Honors & Service pages use the same data.
+- `_data/socials.yml`: email, academic profiles, and CV download.
+- `assets/CV_Mar2026.pdf`: existing downloadable CV, kept at its original URL.
+- `pid-lvlm-iclr26/`: original independent ICLR 2026 project page, preserved byte for byte.
 
-1. Clone the repository and made updates as detailed above.
-1. Make sure you have ruby-dev, bundler, and nodejs installed
-    
-    On most Linux distribution and [Windows Subsystem Linux](https://learn.microsoft.com/en-us/windows/wsl/about) the command is:
-    ```bash
-    sudo apt install ruby-dev ruby-bundler nodejs
-    ```
-    On MacOS the commands are:
-    ```bash
-    brew install ruby
-    brew install node
-    gem install bundler
-    ```
-1. Run `bundle install` to install ruby dependencies. If you get errors, delete Gemfile.lock and try again.
-1. Run `jekyll serve -l -H localhost` to generate the HTML and serve it from `localhost:4000` the local server will automatically rebuild and refresh the pages on change.
+## Optional template modules
 
-If you are running on Linux it may be necessary to install some additional dependencies prior to being able to run locally: `sudo apt install build-essential gcc make`
+Official pages, example collections, data, assets, and workflows are retained in `_optional/al-folio/` and excluded from publishing. This includes Blog, Projects, Repositories, Teaching, People, Books, News, and Submenus.
 
-# Maintenance
+To enable a module, copy its page into `_pages/`, replace sample content with real content, then set `nav: true` and a `nav_order`. Restore the module's collection and any required assets from `_optional/al-folio/`; enable its corresponding collection output and feature flags in `_config.yml`. Blog also requires enabling pagination. Keep unrelated example content unpublished.
 
-Bug reports and feature requests to the template should be [submitted via GitHub](https://github.com/academicpages/academicpages.github.io/issues/new/choose). For questions concerning how to style the template, please feel free to start a [new discussion on GitHub](https://github.com/academicpages/academicpages.github.io/discussions).
+The live navigation is About, Publications, Experience, Honors & Service, Misc, CV.
 
-This repository was forked (then detached) by [Stuart Geiger](https://github.com/staeiou) from the [Minimal Mistakes Jekyll Theme](https://mmistakes.github.io/minimal-mistakes/), which is © 2016 Michael Rose and released under the MIT License (see LICENSE.md). It is currently being maintained by [Robert Zupko](https://github.com/rjzupkoii) and additional maintainers would be welcomed.
+## Deployment
 
-## Bugfixes and enhancements
+The workflow builds pull requests for validation and publishes only pushes to `master`. GitHub Pages must then serve the generated `gh-pages` branch. The migration is reviewed on `redesign/al-folio`; pushing that branch does not deploy the site or change the current Pages settings.
 
-If you have bugfixes and enhancements that you would like to submit as a pull request, you will need to [fork](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/fork-a-repo) this repository as opposed to using it as a template. This will also allow you to [synchronize your copy](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/syncing-a-fork) of template to your fork as well.
-
-Unfortunately, one logistical issue with a template theme like Academic Pages that makes it a little tricky to get bug fixes and updates to the core theme. If you use this template and customize it, you will probably get merge conflicts if you attempt to synchronize. If you want to save your various .yml configuration files and markdown files, you can delete the repository and fork it again. Or you can manually patch.
+See `MIGRATION.md` for preservation and rollback notes, and `docs/` for upstream documentation.

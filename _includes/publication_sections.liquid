@@ -1,0 +1,37 @@
+<style>
+  .publication-section {
+    clear: both;
+    scroll-margin-top: 5.5rem;
+  }
+  .publication-section + .publication-section {
+    margin-top: 3rem;
+  }
+  .publications .author em,
+  .publications .author sup,
+  .publications .author-contribution strong,
+  .publications .publication-distinction {
+    font-weight: 700;
+  }
+  .publications .author em {
+    font-style: normal;
+  }
+  .publications .author sup {
+    font-size: 0.85em;
+  }
+</style>
+
+<section id="selected-publications" class="publication-section" aria-labelledby="selected-publications-title">
+  <h2 id="selected-publications-title">Selected Publications</h2>
+  <div class="publications">
+    {% comment %}Keep paper anchors unique when the same paper also appears in the full list.{% endcomment %}
+    {% capture selected_bibliography %}{% bibliography --group_by none --query @*[selected=true]* %}{% endcapture %}
+    {{ selected_bibliography | replace: 'id="', 'id="selected-' }}
+  </div>
+</section>
+
+<section id="full-publications" class="publication-section" aria-labelledby="full-publications-title">
+  <h2 id="full-publications-title">Full Publications</h2>
+  <div class="publications">
+    {% bibliography %}
+  </div>
+</section>

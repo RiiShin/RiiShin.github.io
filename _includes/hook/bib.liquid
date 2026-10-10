@@ -1,0 +1,9 @@
+{% comment %}Keep authorship and presentation distinctions visible in both publication lists.{% endcomment %}
+{% if entry.equal_contribution %}
+  <div class="author-contribution">
+    <strong>* {{ entry.equal_contribution | escape }}</strong>
+  </div>
+{% endif %}
+{% if entry.presentation %}
+  {% capture entrytype %}{{ entrytype }} <strong class="publication-distinction">({{ entry.presentation | escape }})</strong>{% endcapture %}
+{% endif %}
