@@ -23,11 +23,11 @@ latest_posts:
   }
 </style>
 
-My name is Lixin Xiu. I’m currently a PhD student at the Graduate School of Information Science and Technology, the University of Tokyo, supervised by Prof. Hideki Nakayama.
+Nice to meet you! I’m currently a PhD student at the Graduate School of Information Science and Technology, the University of Tokyo, supervised by Prof. Hideki Nakayama.
 
 My research interests include **post-training for multimodal large language models (mLLMs) and agents**, **multi-agent systems**, and **information theory**.
 
-I’m actively looking for full-time research positions. If you are interested in working with me, please feel free to [contact me](mailto:xiu-lixin106@g.ecc.u-tokyo.ac.jp).
+I’m actively looking for full-time research positions. If you’d like to chat about anything, please feel free to [contact me](mailto:xiu-lixin106@g.ecc.u-tokyo.ac.jp).
 
 ## Education
 
