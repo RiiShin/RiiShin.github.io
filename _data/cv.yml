@@ -4,8 +4,8 @@ cv:
   email: xiu-lixin106@g.ecc.u-tokyo.ac.jp
   location: Tokyo, Japan
   summary: PhD student at the University of Tokyo, supervised by Prof. Hideki Nakayama.
-    Research interests include multimodal large language models, post-training, agent
-    systems, and information theory.
+    Research interests include post-training for multimodal large language models (mLLMs)
+    and agents, multi-agent systems, and information theory.
   social_networks:
     - network: GitHub
       username: RiiShin
@@ -37,8 +37,13 @@ cv:
         start_date: "2018-08-01"
         end_date: "2022-07-01"
     Experience:
+      - company: Lightspeed Studio, Tencent
+        position: Research Intern
+        location: Tokyo, Japan
+        start_date: "2026-07-01"
+        end_date: present
       - company: Shanda AI Research Tokyo
-        position: Intern
+        position: Research Intern
         location: Tokyo, Japan
         start_date: "2025-12-01"
         end_date: "2026-03-01"
@@ -53,8 +58,15 @@ cv:
         start_date: "2021-05-01"
         end_date: "2021-07-01"
     Awards:
+      - title: JSPS Research Fellowship (DC2)
+        date: "2027-04-01"
+        date_label: 2027～
+        awarder: Japan Society for the Promotion of Science
+        featured: true
+        summary: "Selected for the fellowship at the University of Tokyo. Fellowship tenure: April 2027 – March 2029."
       - title: UTokyo SPRING GX
         date: "2024-10-01"
+        date_label: 2024～
         awarder: The University of Tokyo
         summary: October 2024 – September 2027. JPY 180,000/month stipend and JPY 360,000/year
           research grant.
@@ -66,4 +78,4 @@ cv:
         awarder: 12th Mathematics Competition of Chinese College Students
     Service:
       - label: Reviewer
-        details: ICLR 2026
+        details: ICLR 2026, NeurIPS 2026, ARR May 2026, ICLR 2027, ARR Oct 2026

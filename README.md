@@ -18,9 +18,11 @@ Open http://127.0.0.1:4000/. The personal site uses an empty `baseurl`.
 ## Editing content
 
 - `_pages/about.md`: introduction and education.
+- `_layouts/about.liquid`: acknowledged override for a uniformly bold bilingual name heading; `chinese_name` in the About page supplies the Chinese name without changing publication author metadata.
 - `_bibliography/papers.bib`: publications, selected papers, links, and equal-contribution notes.
 - `_includes/hook/bib.liquid`: supported bibliography hook for visible co-first-author notes and inline presentation distinctions.
 - `_includes/publication_sections.liquid`: shared Selected Publications and Full Publications sections on the homepage and publication page. `selected` marks the two lead-author papers; `sort_priority` resolves same-year ordering without inventing publication dates.
+- `_includes/home_sections.liquid`: appends Experience, Honors & Service, and Misc to the homepage, in navigation order. Misc contains the PDF and online CV links; there is no separate homepage CV section. Shared content includes keep the standalone pages synchronized; the full online CV remains available at `/cv/`.
 - `_includes/header.liquid`: intentional override of the al-folio header to target the selected-publications anchor and load the mobile section-navigation helper. Its upstream version is tracked in `.al-folio-overrides.yml`.
 - `_data/cv.yml`: experience, honors, service, and online CV. Experience and Honors & Service pages use the same data.
 - `_data/socials.yml`: email, academic profiles, and CV download.
@@ -33,10 +35,10 @@ Official pages, example collections, data, assets, and workflows are retained in
 
 To enable a module, copy its page into `_pages/`, replace sample content with real content, then set `nav: true` and a `nav_order`. Restore the module's collection and any required assets from `_optional/al-folio/`; enable its corresponding collection output and feature flags in `_config.yml`. Blog also requires enabling pagination. Keep unrelated example content unpublished.
 
-The live navigation is About, Publications, Experience, Honors & Service, Misc, CV.
+The live navigation is About, Publications, Experience, Honors & Service, Misc. Navigation links target homepage sections; the standalone page URLs remain available. The navigation helper closes the mobile menu and highlights the visible homepage section.
 
 ## Deployment
 
-The workflow builds pull requests for validation and publishes only pushes to `master`. GitHub Pages must then serve the generated `gh-pages` branch. The migration is reviewed on `redesign/al-folio`; pushing that branch does not deploy the site or change the current Pages settings.
+The workflow builds pull requests for validation and publishes pushes to `master` through GitHub Pages Actions. It can also be run manually on `master`. Pages uses the GitHub Actions publishing source, and no generated-output branch is needed. The `redesign/al-folio` review branch does not deploy the site.
 
 See `MIGRATION.md` for preservation and rollback notes, and `docs/` for upstream documentation.

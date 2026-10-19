@@ -5,20 +5,20 @@
 - Original version: backup/pre-al-folio-20261007.
 - Template: al-folio v1.2, commit b95d6d61a1b0663529094b1b5f4fbe8aa41f8a04.
 - Previous Pages configuration: legacy build, master branch, repository root, no custom domain.
-- New source remains on master after approval; the build workflow produces gh-pages.
-- The user authorized committing and pushing the review branch on 2026-10-11. Production deployment remains a separate step; pushing this branch does not trigger the deployment workflow.
+- Production source: master; the workflow builds with Ruby 3.3 and deploys the generated artifact using GitHub Pages Actions.
+- The user authorized publishing the website on 2026-10-19. The release tag `release/al-folio-20261019` identifies the migration's production source. Pushing only the review branch does not deploy the site.
 
 ## Content and compatibility
 
-The six requested navigation entries are active. Optional al-folio modules and their examples are retained under `_optional/`, excluded from the generated site. Template metadata, external feeds, sample resume loading, and citation counters are disabled or personalized.
+The five navigation entries are About, Publications, Experience, Honors & Service, and Misc. CV links are consolidated in Misc, while the standalone CV page remains available. Optional al-folio modules and their examples are retained under `_optional/`, excluded from the generated site. Template metadata, external feeds, sample resume loading, and citation counters are disabled or personalized.
 
 All existing top-level personal assets and the PDF files in `_pages/` are retained. The complete `pid-lvlm-iclr26/` directory is unchanged. The old About URLs redirect home; old homepage section fragments redirect to the corresponding new pages.
 
-The initial experience list uses only information in the original website. New internships can be added to `_data/cv.yml` once details are provided; the Experience page and CV will update together. The existing PDF is not regenerated.
+The current experience and awards include the user-provided Tencent research internship and JSPS DC2 selection. Updates to `_data/cv.yml` appear in the homepage, Experience, Honors & Service, and online CV. The existing PDF is not regenerated.
 
 ## Rollback
 
-Before production release, record the approved source commit and Pages configuration. The original source remains available at `backup/pre-al-folio-20261007`. To restore it, restore that version on a recovery branch and restore the previous Pages publishing configuration; do not rewrite repository history.
+The previous source commit is `f4a1dc3e88149fa87705975ab528dae324bf93a4`, also available at `backup/pre-al-folio-20261007`. The previous Pages settings were `build_type: legacy`, source branch `master`, path `/`, HTTPS enabled, and no custom domain. The new publishing method is `build_type: workflow`. To roll back, restore the backup source on a recovery branch, merge it into `master`, and restore the previous Pages publishing settings; do not rewrite repository history.
 
 ## Current review
 

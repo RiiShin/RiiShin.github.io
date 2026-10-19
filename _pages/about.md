@@ -1,6 +1,7 @@
 ---
 layout: about
 title: About
+chinese_name: 修 立信
 permalink: /
 subtitle: PhD Student · The University of Tokyo
 profile:
@@ -16,6 +17,7 @@ latest_posts:
 ---
 
 <style>
+  .post-title .chinese-name { display: inline-block; }
   @media (max-width: 575px) {
     .social .contact-icons { font-size: 2.4rem; }
   }
@@ -23,7 +25,7 @@ latest_posts:
 
 My name is Lixin Xiu. I’m currently a PhD student at the Graduate School of Information Science and Technology, the University of Tokyo, supervised by Prof. Hideki Nakayama.
 
-My research interests include **Multimodal Large Language Models (MLLMs)**, **post-training**, **agent systems**, and **information theory**.
+My research interests include **post-training for multimodal large language models (mLLMs) and agents**, **multi-agent systems**, and **information theory**.
 
 I’m actively looking for full-time research positions. If you are interested in working with me, please feel free to [contact me](mailto:xiu-lixin106@g.ecc.u-tokyo.ac.jp).
 
@@ -40,14 +42,19 @@ I’m actively looking for full-time research positions. If you are interested i
 
 {% include publication_sections.liquid %}
 
+{% include home_sections.liquid %}
+
 <script>
   // Preserve links shared from the previous single-page site.
   const previousSections = {
     '#publications': '/#selected-publications',
-    '#experience': '/experience/',
-    '#honors--service': '/honors-service/',
-    '#misc': '/misc/'
+    '#honors--service': '/#honors-service',
+    '#cv': '/#misc'
   };
-  const destination = previousSections[window.location.hash];
-  if (destination) window.location.replace(destination);
+  const redirectPreviousSection = () => {
+    const destination = previousSections[window.location.hash];
+    if (destination) window.location.replace(destination);
+  };
+  window.addEventListener('hashchange', redirectPreviousSection);
+  redirectPreviousSection();
 </script>

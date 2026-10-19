@@ -1,0 +1,27 @@
+<style>
+  .home-section {
+    clear: both;
+    margin-top: 4rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--global-divider-color);
+    scroll-margin-top: 5.5rem;
+  }
+  .home-section > h2 {
+    margin-bottom: 1.75rem;
+  }
+</style>
+
+<section id="experience" class="home-section" aria-labelledby="experience-title">
+  <h2 id="experience-title">Experience</h2>
+  {% include experience.liquid %}
+</section>
+
+<section id="honors-service" class="home-section" aria-labelledby="honors-service-title">
+  <h2 id="honors-service-title">Honors &amp; Service</h2>
+  {% include honors-service.liquid heading_level=3 %}
+</section>
+
+<section id="misc" class="home-section" aria-labelledby="misc-title">
+  <h2 id="misc-title">Misc</h2>
+  {% include misc.liquid %}
+</section>

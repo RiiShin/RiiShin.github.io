@@ -1,0 +1,36 @@
+<style>
+  .experience-entry {
+    padding: 1.25rem 0;
+  }
+  .experience-entry + .experience-entry {
+    border-top: 1px solid var(--global-divider-color);
+  }
+  .experience-entry h3 {
+    margin-bottom: 0.6rem;
+    font-size: 1.3rem;
+    font-weight: 600;
+  }
+  .experience-entry p:last-child {
+    margin-bottom: 0;
+  }
+</style>
+<div class="experience-list">
+  {% for entry in site.data.cv.cv.sections.Experience %}
+    <article class="experience-entry">
+      <h3>{{ entry.company | escape }}</h3>
+      <p>
+        <strong>{{ entry.position | escape }}</strong><br>
+        {{ entry.location | escape }} · {{ entry.start_date | date: '%b %Y' }} –
+        {% if entry.end_date == 'present' %}Present{% else %}{{ entry.end_date | date: '%b %Y' }}{% endif %}
+      </p>
+      {% if entry.summary %}{{ entry.summary | markdownify }}{% endif %}
+      {% if entry.highlights.size > 0 %}
+        <ul>
+          {% for highlight in entry.highlights %}
+            <li>{{ highlight | escape }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    </article>
+  {% endfor %}
+</div>

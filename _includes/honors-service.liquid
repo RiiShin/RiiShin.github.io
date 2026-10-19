@@ -1,0 +1,98 @@
+{% assign honor_heading = include.heading_level | default: 2 %}
+<style>
+  .honors-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .honors-list .honor-entry {
+    display: grid;
+    grid-template-columns: 9rem minmax(0, 1fr);
+    gap: 1.5rem;
+    padding: 1.5rem 0;
+    border-bottom: 1px solid var(--global-divider-color);
+  }
+  .honors-list .honor-featured {
+    padding: 1.75rem 1.5rem;
+    margin-bottom: 0.5rem;
+    border: 1px solid var(--global-divider-color);
+    border-left: 4px solid var(--global-theme-color);
+    border-radius: 0.35rem;
+    background: var(--global-card-bg-color);
+  }
+  .honors-list .honor-date {
+    padding-top: 0.15rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+  }
+  .honors-list .honor-title {
+    margin: 0 0 0.4rem;
+    font-size: 1.15rem;
+    line-height: 1.4;
+    font-weight: 600;
+  }
+  .honors-list .honor-featured .honor-title {
+    font-size: 1.45rem;
+    font-weight: 700;
+  }
+  .honors-list .honor-featured .honor-date {
+    color: var(--global-theme-color);
+    font-weight: 600;
+  }
+  .honors-list p {
+    margin: 0;
+    line-height: 1.6;
+  }
+  .honors-list .honor-organization {
+    font-size: 0.95rem;
+  }
+  .honors-list .honor-summary {
+    margin-top: 0.65rem;
+  }
+  .academic-service {
+    margin-top: 2.5rem;
+  }
+  .academic-service .academic-service-title {
+    margin-bottom: 1rem;
+    font-size: 1.4rem;
+    font-weight: 600;
+  }
+  .academic-service p {
+    margin-bottom: 0.5rem;
+  }
+  @media (max-width: 575px) {
+    .honors-list .honor-entry {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 0.5rem;
+    }
+    .honors-list .honor-featured {
+      padding: 1.25rem;
+    }
+  }
+</style>
+
+<ol class="honors-list" aria-label="Fellowships and awards">
+  {% for award in site.data.cv.cv.sections.Awards %}
+    <li class="honor-entry{% if award.featured %} honor-featured{% endif %}">
+      <div class="honor-date">
+        {% if award.date_label %}{{ award.date_label | escape }}{% else %}{{ award.date | date: '%Y' }}{% endif %}
+      </div>
+      <div>
+        <h{{ honor_heading }} class="honor-title">{{ award.title | escape }}</h{{ honor_heading }}>
+        <p class="honor-organization">{{ award.awarder | escape }}</p>
+        {% if award.summary %}
+          <p class="honor-summary">{{ award.summary | escape }}</p>
+        {% endif %}
+      </div>
+    </li>
+  {% endfor %}
+</ol>
+
+<section class="academic-service" aria-labelledby="academic-service-title">
+  <h{{ honor_heading }} id="academic-service-title" class="academic-service-title">Academic service</h{{ honor_heading }}>
+  {% for service in site.data.cv.cv.sections.Service %}
+    <p>
+      <strong>{{ service.label | escape }}:</strong> {{ service.details | escape }}
+    </p>
+  {% endfor %}
+</section>

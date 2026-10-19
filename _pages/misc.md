@@ -4,6 +4,7 @@ title: Misc
 permalink: /misc/
 nav: true
 nav_order: 4
+home_anchor: misc
 ---
 
-You can find my full CV [here]({{ '/assets/CV_Mar2026.pdf' | relative_url }}), or browse the [online CV]({{ '/cv/' | relative_url }}).
+{% include misc.liquid %}

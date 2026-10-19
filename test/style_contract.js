@@ -66,7 +66,15 @@ if (/gem 'al_math',\s*:git =>/.test(gemfile)) {
 }
 
 // Intentional site includes; the header override is tracked by al-folio's override audit.
-const siteIncludes = new Set(["hook/bib.liquid", "publication_sections.liquid", "header.liquid"]);
+const siteIncludes = new Set([
+  "hook/bib.liquid",
+  "publication_sections.liquid",
+  "header.liquid",
+  "home_sections.liquid",
+  "experience.liquid",
+  "honors-service.liquid",
+  "misc.liquid",
+]);
 if (exists("_includes")) {
   for (const file of fs.readdirSync(path.join(root, "_includes"), { recursive: true })) {
     if (fs.statSync(path.join(root, "_includes", file)).isFile() && !siteIncludes.has(file)) {
@@ -75,7 +83,16 @@ if (exists("_includes")) {
   }
 }
 
-for (const forbiddenPath of ["_layouts", "_sass", "_scripts", "assets/tailwind", "tailwind.config.js", "assets/webfonts"]) {
+// The acknowledged About override adds the bilingual name without changing author metadata.
+if (exists("_layouts")) {
+  for (const file of fs.readdirSync(path.join(root, "_layouts"), { recursive: true })) {
+    if (fs.statSync(path.join(root, "_layouts", file)).isFile() && file !== "about.liquid") {
+      failures.push(`Unexpected local layout \`_layouts/${file}\`; only the acknowledged About override is allowed.`);
+    }
+  }
+}
+
+for (const forbiddenPath of ["_sass", "_scripts", "assets/tailwind", "tailwind.config.js", "assets/webfonts"]) {
   if (exists(forbiddenPath)) {
     failures.push(`Starter must not own core component path \`${forbiddenPath}\`; move ownership to the corresponding gem.`);
   }

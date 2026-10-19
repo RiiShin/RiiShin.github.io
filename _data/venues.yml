@@ -1,6 +1,8 @@
-EMNLP:
-  color: "#b509ac"
+EMNLP Main:
+  color: "#c94bc2"
+EMNLP Findings:
+  color: "#c94bc2"
 ICLR:
-  color: "#b509ac"
-ICML:
-  color: "#b509ac"
+  color: "#c94bc2"
+ICML Oral:
+  color: "#c94bc2"

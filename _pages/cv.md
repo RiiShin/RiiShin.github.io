@@ -2,7 +2,7 @@
 layout: cv
 title: CV
 permalink: /cv/
-nav: true
+nav: false
 nav_order: 5
 cv_pdf: /assets/CV_Mar2026.pdf
 cv_format: rendercv
